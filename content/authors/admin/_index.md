@@ -1,6 +1,6 @@
 ---
 # Display name
-name: Nelson Bighetti
+name: Hao Chen
 
 # Username (this should match the folder name)
 authors:
@@ -10,20 +10,20 @@ authors:
 superuser: true
 
 # Role/position
-role: Professor of Artificial Intelligence
+role: PhD in Computer Science
 
 # Organizations/Affiliations
 organizations:
-- name: Stanford University
+- name: The University of Adelaide
   url: ""
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: Statistical methods for computer vision and deep learning.
 
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
+- Machine Learning
+- Computer Vision
+- Bayesian Deep Learning
 
 education:
   courses:
@@ -53,7 +53,7 @@ social:
   link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
+  link: https://github.com/stan-haochen
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
 # - icon: cv
@@ -61,7 +61,7 @@ social:
 #   link: files/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: ""
+email: "stanzju@gmail.com"
 
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
@@ -70,6 +70,12 @@ user_groups:
 - Visitors
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Hao Chen is a third-year PhD student of computer science in [Adelaide Intelligent Machines Group](https://github.com/aim-uofa) at [the University of Adelaide](https://www.adelaide.edu.au/). He is advised by Professor [Chunhua Shen](https://cs.adelaide.edu.au/~chhshen/). Before coming to Adelaide I obtained my undergraduate degree from Zhejiang University, and had been a researcher in NetEase Inc.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+I anticipate to graduate in late 2020.
+
+My general research interest lies in probabilistic methods for general perception tasks in computer vision. My recent research involves:
+
+* Fast NAS: computation-friendly neural architecture search (NAS) with reinforcement learning for segmentation, detection and low-level tasks.
+* BlendMask: a general instance segmentation framework which is both faster and more efficient than Mask-RCNN.
+* AdelaiDet: a collection of recent projects dealing with different instance-level tasks.
