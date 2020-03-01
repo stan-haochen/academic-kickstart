@@ -83,8 +83,6 @@ Another advantage of BlendMask is that it can produce higher quality masks, sinc
 
 Here is a demo video with BlendMask.
 
-<div className="Image__Small">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/E-gXL-eIPCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+{{< youtube E-gXL-eIPCw >}}
 
 For more results, please see our paper.
