@@ -42,7 +42,7 @@ In this post I would like to first give a quick recap to Bayesian Deep Learning 
 
 We can estimate epistemic uncertainty by placing a prior on model weights, or aleatoric uncertainty by putting a prior on model outputs. Bayesian Neural Networks replace neural network weights with the posterior distribution of them.
 
-## Bayesian Neural Networks
+## Epistemic Uncertainty with Bayesian Neural Networks
 
 ### MCMC Approaches
 
@@ -58,7 +58,7 @@ $$
 \theta^* = \underset{\theta}{\mathrm{arg\,max}} \{\mathbb E_{\omega\sim q}[\log p(y|x, \omega)] - D_{\text{KL}}[q(\omega;\theta)\|p(\omega)]\}.
 $$
 
-The first term is reconstruction and the second regularization. We can also use MC approximations for the reconstruction term:
+The first term is reconstruction and the second regularization. The KL term can be represented explicitly if we choose simple form for the variational distribution. And we can use MC approximations for the reconstruction term:
 
 $$
 \mathbb E_{\omega\sim q}[\log p(y|x, \omega)]\simeq \frac1K\sum_{k=1}^K \log p(y|x, \omega_k), \qquad \omega_k\sim q(\omega; \theta)
@@ -80,7 +80,7 @@ such as in [MC dropout](https://arxiv.org/abs/1506.02142 "Dropout as a Bayesian 
 Approximation and acceleration of ensembling has been studied.
 
 ### Deterministic VI Approaches
-
+[[Wu et al. 2018]][Wu2018] assume the pre-ReLU activations are Gaussian and deduce closed form posterior of the network output when the nonlinearity is Heaiside or ReLU. Even though sometimes we can only afford to compute the diagonal entries $\operatorname{Cov}(h_j, h_j)$. The empirical result is acceptable.
 
 ### Yes, but Did It Work?
 [[Wenzel et al. 2020]][Wenzel2020] shows that Bayesian posterior can give an inferior prediction than MAP or VI. [[Yao]][Yao2020] suggests that such models could benefits from informative priors instead of treating networks as a black box.
@@ -89,14 +89,15 @@ The exact sampling from a posterior in a deep neural network is infeasible. Curr
 
 Also, it is hard to say whether functional diversity can be captured by sampling around one mode [[Wilson 2020]][Wilson2020].
 
-## Bayesian Object Detection
+## Aleatoric Uncertainty for Panoptic Segmentation
 We consider an object detection problem with a dataset
 
+For real-time applications, we cannot afford expensive Monte Carlo estimations or covariance estimation. So I would prefer not to touch Bayesian Neural Network for object detection. Instead I will just cover a simple model for aleatoric uncertainty.
 
-## Deterministic Variational Approximation
+I choose to adopt heteroscedastic aleatoric uncertainty introduced in [[Kendall 2017]][Kendall2017]. For a regression problem given input pair $\mathbf X$, $\mathbf Y$. 
 
-[Kendall2017]: https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf "What Uncertainties Do We Need in Bayesian Deep
-Learning for Computer Vision?"
+
+[Kendall2017]: https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?"
 [Wu2018]: https://arxiv.org/abs/1810.03958 "Deterministic Variational Inference for Robust Bayesian Neural Networks"
 [Wenzel2020]: https://arxiv.org/abs/2002.02405 "How Good is the Bayes Posterior in Deep Neural Networks Really?"
 [Wilson2020]: https://arxiv.org/abs/2002.08791 "Bayesian Deep Learning and a Probabilistic Perspective of Generalization"

@@ -8,7 +8,7 @@ authors: []
 tags: []
 categories: []
 date: 2020-02-28T17:36:41+10:30
-lastmod: 2020-02-28T17:36:41+10:30
+lastmod: 2020-03-13T17:36:41+10:30
 featured: false
 draft: false
 
@@ -30,8 +30,8 @@ projects: []
 
 Here are the papers got accepted with all authors listed (,* means equal contribution). Two papers on instance-level perception tasks:
 
-* [BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation](https://arxiv.org/abs/2001.00309) by Hao Chen*, Kunyang Sun*, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan
-* [ABCNet: Real-time Scene Text Spotting with Adaptive Bezier-Curve Network](https://arxiv.org/abs/2002.10200) by Yuliang Liu*, Hao Chen*, Chunhua Shen, Tong He, Lianwen Jin, Liangwei Wang
+* [BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation](https://arxiv.org/abs/2001.00309) by Hao Chen*, Kunyang Sun*, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan (oral)
+* [ABCNet: Real-time Scene Text Spotting with Adaptive Bezier-Curve Network](https://arxiv.org/abs/2002.10200) by Yuliang Liu*, Hao Chen*, Chunhua Shen, Tong He, Lianwen Jin, Liangwei Wang (oral)
 
 Two papers on Neural Architecture Search:
 
