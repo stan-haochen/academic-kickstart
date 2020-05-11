@@ -25,8 +25,22 @@ image:
 #   Simply enter your project's folder or file name without extension.
 #   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
 #   Otherwise, set `projects = []`.
-projects: []
+projects: [adet]
+
 ---
+Update 01/05/2020:
+
+I have uploaded the CVPR Spotlight video to YouTube.
+
+{{< youtube MfbbQkFAkHA >}}
+
+---
+Update 20/03/2020:
+
+I give a talk on BlendMask [here](https://live.bilibili.com/3344545) at 20:00 Beijing Time (UTC+8) 24/03/2020. You can download the slides [here](https://cloudstor.aarnet.edu.au/plus/s/mSgeji3PQiD84OG).
+
+___________________
+
 I want to briefly highlight our recent paper on instance segmentation:
 
 * Hao Chen, Kunyang Sun, Zhi Tian, Chunhua Shen, Yongming Huang, Youliang Yan (2020) [BlendMask: Top-Down Meets Bottom-Up for Instance Segmentation](https://arxiv.org/abs/2001.00309)
@@ -62,6 +76,10 @@ We make this process parametric by using self-attention instead of hard one-hot 
 
 The blender module effectively reduces the channel size of YOLACT protonet, from 32 to 4, and produces better masks.
 
+Here is a live view of the blending process:
+
+<img src="images/teaser.gif" style="width: 400px;"/>
+
 
 ## Qualitative and Quantitative Results
 
@@ -85,4 +103,4 @@ Here is a demo video with BlendMask.
 
 {{< youtube E-gXL-eIPCw >}}
 
-For more results, please see our paper.
+For more results, please see [our paper](https://arxiv.org/abs/2001.00309).

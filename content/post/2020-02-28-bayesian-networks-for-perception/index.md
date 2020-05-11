@@ -10,7 +10,7 @@ categories: []
 date: 2020-02-28T17:31:22+10:30
 lastmod: 2020-02-28T17:31:22+10:30
 featured: false
-draft: false
+draft: true
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -69,7 +69,7 @@ $$
 | Deep Ensemble |  $\frac1S\sum_{s=1}^S\delta(\omega - \omega_s)$      |
 | Mean-Field VI |  $\mathcal N(\omega\vert\mu, \text{diag}(\sigma^2))$ |
 | MC dropout    |  Dropout distribution |
-| SWAG          |   |
+| SWAG          |  $\mathcal N(\theta_{SWA}, \frac12(\Sigma_{diag}+\Sigma_{low-rank}))$ |
 | FGE           |   |
 | cSGLD         |   |
 | TDA           |   |
@@ -96,6 +96,9 @@ For real-time applications, we cannot afford expensive Monte Carlo estimations o
 
 I choose to adopt heteroscedastic aleatoric uncertainty introduced in [[Kendall 2017]][Kendall2017]. For a regression problem given input pair $\mathbf X$, $\mathbf Y$. 
 
+One typical aleatoric uncertainty comes from the annotation inaccuracy. We take that into consideration.
+
+Instead of using ensembles or SWAG, we consider using different locations as sampling.
 
 [Kendall2017]: https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?"
 [Wu2018]: https://arxiv.org/abs/1810.03958 "Deterministic Variational Inference for Robust Bayesian Neural Networks"
