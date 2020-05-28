@@ -93,7 +93,7 @@ Non-Convex Functions
 
 ### Symmetry → Non-Convexity
 
-{{% fragment %}} Problem asks for multiple components, but teh components have <span style="color:green;">no ordering</span>.
+{{% fragment %}} Problem asks for multiple components, but the components have <span style="color:green;">no ordering</span>.
 
 ---
 
@@ -147,7 +147,7 @@ Non-Convex Functions
 
 ## Saddle Points
 
-[$$z = x^2 - y^2 + y^4 + 0.1\cdot y$$](https://shorturl.at/qtvwP)
+[$$z = x^2 - y^2 + y^4 + 0.1\cdot y$$](https://academo.org/demos/3d-surface-plotter/?expression=x*x-y*y%2By%5E4%2B0.1*y&xRange=-1%2C%2B1&yRange=-1%2C%2B1&resolution=50)
 
 {{< speaker_note >}}
 - Global minimum
@@ -159,7 +159,7 @@ Non-Convex Functions
 
 ## Symmetry → Non-Convexity
 
-[$$f(x) = -\\\|x\\\|^2 + \\\|x\\\|_4^4$$](https://shorturl.at/deoG7)
+[$$f(x) = -\\\|x\\\|^2 + \\\|x\\\|_4^4$$](https://academo.org/demos/3d-surface-plotter/?expression=x%5E4%2By%5E4-x%5E2-y%5E2&xRange=-1.5%2C%2B1.5&yRange=-1.5%2C%2B1.5&resolution=50)
 
 {{< speaker_note >}}
 - This construction is used in independent component analysis
@@ -239,6 +239,9 @@ $$M=UV^T\qquad \min(f(X, Y):=\\\|M-XY^T\\\|^2_\Omega)$$
 - {{% fragment %}} Not true: many equivalent solutions: $$UV^T=URR^TV^T$$ {{% /fragment %}}
 - {{% fragment %}} Saddle points: e.g. $X=Y=0$ {{% /fragment %}}
 
+{{< speaker_note>}}
+- The objective behaves similar to a norm
+
 ---
 
 > <span style="color:blue">Theorem</span>: when the number of observations is at least $\tilde{\Omega}(nr^6)$, all local minima of $f(X, Y)^*$ are global minima: satisfy $XY^T=M$.
@@ -254,7 +257,7 @@ Prior work:
   * non-convex optimization with carefully chosen starting point
 
 {{< speaker_note>}}
-- convex relaxation: has tight $r$ $\Omega(nr poly(\log(d))$
+- convex relaxation: has tight $r$ $\Omega(nr poly(\log(d))$ d is #observations
 - non-convex: $nr^2$
 - 27 min mark
 {{< /speaker_note>}}
@@ -303,7 +306,12 @@ $\nabla g(X)=0${{% fragment %}} → $MX=XX^TX$ {{% /fragment %}} {{% fragment %}
 
 {{% fragment %}}$\nabla^2 g(X)\succcurlyeq0${{% /fragment %}}{{% fragment %}} → $\text{span}(X)=\text{span}(M)$ {{% /fragment %}}
 
-{{% fragment %}}Approach in [[GLM16]]. Need more cases to generalize to Matrix Completion.{{% /fragment %}}
+{{% fragment %}}Approach in [[GLM16]]. Need more cases to work for Matrix Completion.{{% /fragment %}}
+
+{{< speaker_note>}}
+- $X$ is a full-rank matrix == span(X) = span(M) (span of column vectors)
+- for the case X is not full rank, for example X=0, gradient = 0
+{{< /speaker_note>}}
 
 ---
 
@@ -392,12 +400,17 @@ $$
 - {{% fragment %}} With 2 layers, no higher order saddle points. {{% /fragment %}}
 - {{% fragment %}} With 3 or more layers, has higher order saddles. {{% /fragment %}}
 
+{{< speaker_note>}}
+- All methods rely on different assumptions. Not comparable and not clear whether the assumptions are necessary
+{{< /speaker_note>}}
+
 ---
 
 - For a critical point, if product of all layers has rank $r$, then it is a local and global minima (if r = min(m, n)) it can also be a normal saddle point (if r < min(m, n)).
 - Open problem: does local search actually find a global minimum?
 
 {{< speaker_note>}}
+- min(m, n) the maximum rank we can get
 - Algorithm can be trapped in higher order saddles
 {{< /speaker_note>}}
 
@@ -410,11 +423,11 @@ g(x) = a^T\sigma(Bx)
 $$
 
 - {{% fragment %}}Wlog: rows of $B$ ($b_i$) are unit norm.{{% /fragment %}}
-- {{% fragment %}}Data: $x\sim N(0, I)${{% /fragment %}}
-- {{% fragment %}}Some more technical assumptions on $a^*$, $B^*${{% /fragment %}}
+- {{% fragment %}}Data: $x\sim N(0, I)$, $y$ from a teacher.{{% /fragment %}}
+- {{% fragment %}}Some more technical assumptions on a*, B* {{% /fragment %}}
 
 {{< speaker_note>}}
-- $B^*$ is full-rank
+- most importantly, $B^*$ is full-rank
 {{< /speaker_note>}}
 
 ---
@@ -443,11 +456,27 @@ $$
 
 ### Provable New Objective
 
-> <span style="color:blue">Theorem</span>[[GLM17]]: Can construct an objective for two-layer neural network such that all local minima are global
+> <span style="color:blue">Theorem</span>[[GLM17]]: Can construct an objective for two-layer neural network such that all local minima are global*
 
 - {{% fragment %}}Objective inspired by tensor decomposition{{% /fragment %}}
 - {{% fragment %}}Relies on Gaussian distribution{{% /fragment %}}
 - {{% fragment %}}Extended to symmetric input distribution* by [[GKLW18]]{{% /fragment %}}
+
+{{< speaker_note>}}
+- There are some assumptions for global* to be hold
+{{< /speaker_note>}}
+
+---
+
+<span style="color:blue">Theorem</span>[[GKLW18]]: For a two-layer neural network with more outputs than hidden units, if the input distribution is symmetric, there is a polynormial time algorithm that learns the neural network
+
+---
+
+<span style="color:blue">Theorem</span>[[GWZ19]]: For a 2/3-layer neural network with quadratic/polynormal activations, if the inputs are in general position, and
+
+#parameters = O(1) #training samples
+
+GD can memorize training data.
 
 ---
 
@@ -514,9 +543,18 @@ Accelerated methods are faster but leads to slightly worse generalization.
 
 ---
 
+### Finding a global minimum is not always good enough (trajectory/implicit bias)
+
+---
+
 ## [Neural Tangent Kernels](http://www.offconvex.org/2019/10/03/NTK/)
 
-To the functional space
+Optimization is easy (linear) in highly overparametrized regime
+
+---
+
+### How many parameters do we need?
+
 
 [CHMBL15]: https://arxiv.org/abs/1412.0233 "The Loss Surfaces of Multilayer Networks"
 [GHJY15]: https://arxiv.org/abs/1503.02101 "Escaping From Saddle Points --- Online Stochastic Gradient for Tensor Decomposition"
@@ -525,3 +563,4 @@ To the functional space
 [GLM17]: https://arxiv.org/abs/1711.00501 "Learning One-hidden-layer Neural Networks with Landscape Design"
 [Safran&Shamir17]: https://arxiv.org/abs/1712.08968 "Spurious Local Minima are Common in Two-Layer ReLU Neural Networks"
 [GKLW18]: https://arxiv.org/abs/1810.06793 "Learning Two-layer Neural Networks with Symmetric Inputs"
+[GWZ19]: https://arxiv.org/abs/1909.11837 "Mildly Overparametrized Neural Nets can Memorize Training Data Efficiently"
