@@ -10,7 +10,7 @@ categories: []
 date: 2020-02-28T17:31:22+10:30
 lastmod: 2020-02-28T17:31:22+10:30
 featured: false
-draft: true
+draft: false
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -69,7 +69,7 @@ $$
 | Deep Ensemble |  $\frac1S\sum_{s=1}^S\delta(\omega - \omega_s)$      |
 | Mean-Field VI |  $\mathcal N(\omega\vert\mu, \text{diag}(\sigma^2))$ |
 | MC dropout    |  Dropout distribution |
-| SWAG          |  $\mathcal N(\theta_{SWA}, \frac12(\Sigma_{diag}+\Sigma_{low-rank}))$ |
+| SWAG          |   |
 | FGE           |   |
 | cSGLD         |   |
 | TDA           |   |
@@ -80,6 +80,8 @@ such as in [MC dropout](https://arxiv.org/abs/1506.02142 "Dropout as a Bayesian 
 Approximation and acceleration of ensembling has been studied.
 
 ### Deterministic VI Approaches
+SVI such as in [[Blundell 2015]][Blundell2015] is difficult to get to work for large dataset such as ImageNet and complex models.
+
 [[Wu et al. 2018]][Wu2018] assume the pre-ReLU activations are Gaussian and deduce closed form posterior of the network output when the nonlinearity is Heaiside or ReLU. Even though sometimes we can only afford to compute the diagonal entries $\operatorname{Cov}(h_j, h_j)$. The empirical result is acceptable.
 
 ### Yes, but Did It Work?
@@ -89,20 +91,25 @@ The exact sampling from a posterior in a deep neural network is infeasible. Curr
 
 Also, it is hard to say whether functional diversity can be captured by sampling around one mode [[Wilson 2020]][Wilson2020].
 
+Generally, I don't consider these methods scalable enough for more challenging perception tasks on large scale dataset. The uncertainty consistency for these methods can be degraded for different datasets [[]].
+
 ## Aleatoric Uncertainty for Panoptic Segmentation
 We consider an object detection problem with a dataset
 
-For real-time applications, we cannot afford expensive Monte Carlo estimations or covariance estimation. So I would prefer not to touch Bayesian Neural Network for object detection. Instead I will just cover a simple model for ale
-atoric uncertainty.
+For real-time applications, we cannot afford expensive Monte Carlo estimations or covariance estimation.
 
-I choose to adopt heteroscedastic aleatoric uncertainty introduced in [[Kendall 2017]][Kendall2017]. For a regression problem given input pair $\mathbf X$, $\mathbf Y$. 
+The only thing we can afford for epistemic uncertainty is probably making only the last layer Bayesian ([[Riquelme 2018]][Riquelme2018]). So I would prefer not to touch Bayesian Neural Network for object detection.
 
-One typical aleatoric uncertainty comes from the annotation inaccuracy. We take that into consideration.
+Instead I will just cover a simple model for aleatoric uncertainty.
 
-Instead of using ensembles or SWAG, we consider using different locations as sampling.
+I choose to adopt heteroscedastic aleatoric uncertainty introduced in [[Kendall 2017]][Kendall2017]. For a regression problem given input pair $\mathbf X$, $\mathbf Y$.
 
+
+[Blundell2015]: https://arxiv.org/abs/1505.05424 "Weight Uncertainty in Neural Networks"
 [Kendall2017]: https://papers.nips.cc/paper/7141-what-uncertainties-do-we-need-in-bayesian-deep-learning-for-computer-vision.pdf "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?"
-[Wu2018]: https://arxiv.org/abs/1810.03958 "Deterministic Variational Inference for Robust Bayesian Neural Networks"
+[Ovadia2019]: http://papers.nips.cc/paper/9547-can-you-trust-your-models-uncertainty-evaluating-predictive-uncertainty-under-dataset-shift "Can You Trust Your Model’s Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift"
+[Riquelme2018]: https://openreview.net/forum?id=SyYe6k-CW "An Empirical Comparison of Bayesian Deep Networks for Thompson Sampling"
 [Wenzel2020]: https://arxiv.org/abs/2002.02405 "How Good is the Bayes Posterior in Deep Neural Networks Really?"
 [Wilson2020]: https://arxiv.org/abs/2002.08791 "Bayesian Deep Learning and a Probabilistic Perspective of Generalization"
+[Wu2018]: https://arxiv.org/abs/1810.03958 "Deterministic Variational Inference for Robust Bayesian Neural Networks"
 [Yao2020]: https://statmodeling.stat.columbia.edu/2020/02/13/how-good-is-the-bayes-posterior-for-prediction-really/ "How good is the Bayes posterior for prediction really?"
